@@ -14,11 +14,19 @@ router.get('/books', function(req, res, next) {
   })
 });
 
+router.get('/books/new', function(req, res, next) {
+  res.render('new-book', { title: 'Books'});
+});
+
 router.get('/books/:id', function(req, res, next) {
   Book.findById(req.params.id).then(function(book){
     console.log(book)
     res.render('update-book', { title: 'Books', book : book });
   })
+});
+
+router.get('/books/new', function(req, res, next) {
+    res.render('new-book', { title: 'Books', book : book });
 });
 
 module.exports = router;
