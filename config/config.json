@@ -1,0 +1,20 @@
+{
+  "development": {
+    "storage": "library.db",
+    "host": "127.0.0.1",
+    "dialect": "sqlite",
+    "operatorsAliases": false
+  },
+  "test": {
+    "storage": "library.db",
+    "host": "127.0.0.1",
+    "dialect": "sqlite",
+    "operatorsAliases": false
+  },
+  "production": {
+    "storage": "library.db",
+    "host": "127.0.0.1",
+    "dialect": "sqlite",
+    "operatorsAliases": false
+  }
+}
