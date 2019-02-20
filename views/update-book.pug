@@ -1,23 +1,28 @@
 extends layout
 
 block content
+  ul(class="error")
+   if(errors)
+    h2(class="error") Oooops!
+     each error in errors.errors
+      li= error.message
   h1 Update Book
-  form(method="post" action=`/book/${book.dataValues.id}/update` onsubmit= "return confirm('Do you really want to update this book?');")
+  form(method="post" action=`/books/${book.dataValues.id}` onsubmit= "return confirm('Do you really want to update this book?');")
    p
-    lable(for="title") Title
+    label(for="title") Title
     input(name="title" type="text" id="title" value= book.dataValues.title)
    p
-    lable(for="author") Author
+    label(for="author") Author
     input(name="author" type="text" id="author" value= book.dataValues.author)
    p
     label(for="genre") Genre
     input(name="genre" type="text" id="genre" value= book.dataValues.genre)
    p
-    label(for="year")
+    label(for="year") Year
     input(name="year" type="text" id="year" value= book.dataValues.year)
    p
     input(type="submit" value="Update Book")
-  form(method="post" action=`/book/${book.dataValues.id}/delete` onsubmit= "return confirm('Do you really want to delete this book?');")
+  form(method="post" action=`/books/${book.dataValues.id}/delete` onsubmit= "return confirm('Do you really want to delete this book?');")
    p
     a(class="button" href="/books") Cancel
    p
