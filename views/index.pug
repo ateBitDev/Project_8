@@ -2,20 +2,42 @@ extends layout
 
 block content
   h1= title
-  p
-   a.button(href="/books/new") Create New Book
+
   table
    thead
+    tr
+     td
+      p
+       a.button(href="/books/new") Create New Book
+     td(colspan='3')
+      p(align="right")
+       input(name="search" type="text" id="search" placeholder="search" onchange="let word = value")
+       a(class="button" href=`/${word}`) Search
     tr
      th Title
      th Author
      th Genre
      th Year
    tbody
-    each book in books
-     tr
-      td
-       a(href= `/books/${book.dataValues.id}`)= book.dataValues.title
-      td= book.dataValues.author
-      td= book.dataValues.genre
-      td= book.dataValues.year
+    if(offset > -1)
+     - for (let i = offset; i < (offset+limit); i++)
+      tr
+      if(books[i])
+        td
+         a(href= `/books/${books[i].dataValues.id}`)= books[i].dataValues.title
+        td= books[i].dataValues.author
+        td= books[i].dataValues.genre
+        td= books[i].dataValues.year
+    else
+     each book in books
+      tr
+       td
+        a(href= `/books/${book.dataValues.id}`)= book.dataValues.title
+       td= book.dataValues.author
+       td= book.dataValues.genre
+       td= book.dataValues.year
+  br
+  ul
+   - for (var i=0; i < books.length/4; i++)
+    a(class="button" href=`/books/Page/${i+1}` )= "Page " + (i+1)
+   a(class="button" href=`/books/all` ) all
